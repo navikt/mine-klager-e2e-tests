@@ -1,0 +1,31 @@
+apiVersion: nais.io/v1
+kind: Naisjob
+metadata:
+  name: mine-klager-e2e-{{jobid}}
+  namespace: klage
+  labels:
+    team: klage
+    e2e: mine-klager
+    job_id: {{jobid}}
+spec:
+  ttl: 7m
+  backoffLimit: 0
+  resources:
+    requests:
+      cpu: 500m
+      memory: 512Mi
+    limits:
+      cpu: 8000m
+      memory: 8Gi  
+  image: {{image}}
+  env:
+    - name: JOB_ID
+      value: {{jobid}}
+  envFrom:
+    - secret: slack-e2e-secrets
+    - configmap: slack-e2e-configmap
+    - secret: klage-job-status-write-api-key
+  accessPolicy:
+    outbound:
+      external:
+      - host: klage.intern.dev.nav.no
