@@ -4,7 +4,12 @@ export const dismissConsentBanner = async (page: Page, context: BrowserContext) 
   const cookies = await context.cookies();
   const hasConsentCookie = cookies.some((cookie) => cookie.name === 'navno-consent');
 
+  const refuseButton = page.getByTestId('consent-banner-refuse-optional');
+
   if (!hasConsentCookie) {
-    await page.getByTestId('consent-banner-refuse-optional').click();
+    try {
+      await refuseButton.waitFor({ timeout: 1000 });
+      await refuseButton.click();
+    } catch {}
   }
 };
