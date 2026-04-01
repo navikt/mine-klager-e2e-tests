@@ -10,17 +10,15 @@
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "module": "es2015",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "resolveJsonModule": false,
     "isolatedModules": true,
     "noEmit": true,
     "rootDir": "./",
     "outDir": "./dist",
-
     /* Paths */
-    "baseUrl": "./",
     "paths": {
-      "@app/*": ["*"]
+      "@app/*": ["./*"]
     },
     "incremental": true
   },

@@ -1,5 +1,5 @@
 import type { Page } from '@playwright/test';
 
 export class MineKlagerPage {
-  constructor(private page: Page) {}
+  constructor(public readonly page: Page) {}
 }
