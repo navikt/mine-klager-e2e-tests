@@ -1,8 +1,8 @@
 import fs, { createReadStream, type ReadStream } from 'node:fs';
 import { buffer } from 'node:stream/consumers';
-import { envString, IS_DEPLOYED, requiredEnvString } from '@app/config/env';
 import { App, isCodedError } from '@slack/bolt';
 import type { ChatPostMessageResponse, ChatUpdateResponse } from '@slack/web-api';
+import { envString, IS_DEPLOYED, requiredEnvString } from '@/config/env';
 
 const BOT_NAME = 'Mine klager E2E';
 const ICON_URL = 'https://raw.githubusercontent.com/navikt/mine-klager/main/public/logo192.png';

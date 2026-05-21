@@ -1,6 +1,6 @@
-import { LoginPage } from '@app/fixtures/registrering/login-page';
-import { MineKlagerPage } from '@app/fixtures/registrering/mine-klager-page';
 import { test as base } from '@playwright/test';
+import { LoginPage } from '@/fixtures/registrering/login-page';
+import { MineKlagerPage } from '@/fixtures/registrering/mine-klager-page';
 
 interface Pages {
   mineKlagerPage: MineKlagerPage;

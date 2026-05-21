@@ -1,6 +1,6 @@
-import { UI_DOMAIN } from '@app/config/env';
-import { test } from '@app/fixtures/registrering/fixture';
 import { expect } from '@playwright/test';
+import { UI_DOMAIN } from '@/config/env';
+import { test } from '@/fixtures/registrering/fixture';
 
 test.describe('Case list', () => {
   test.beforeEach(async ({ page }) => {

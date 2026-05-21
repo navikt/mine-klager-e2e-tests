@@ -1,7 +1,7 @@
-import { UI_DOMAIN } from '@app/config/env';
-import { test } from '@app/fixtures/registrering/fixture';
 import AxeBuilder from '@axe-core/playwright';
 import { expect } from '@playwright/test';
+import { UI_DOMAIN } from '@/config/env';
+import { test } from '@/fixtures/registrering/fixture';
 
 test.describe('Mine klager', () => {
   test('Tilgjengelighet', async ({ page }) => {
