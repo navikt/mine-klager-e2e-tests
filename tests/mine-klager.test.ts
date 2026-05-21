@@ -2,6 +2,10 @@ import { expect } from '@playwright/test';
 import { UI_DOMAIN } from '@/config/env';
 import { test } from '@/fixtures/registrering/fixture';
 
+const CASE_COUNT_REGEX = /Mine saker hos Klageinstans \(\d+\)/;
+const CASE_HEADING_REGEX = /som gjelder «.+»/;
+const EXPAND_EVENTS_REGEX = /Vis eldre hendelser/;
+
 test.describe('Case list', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto(UI_DOMAIN);
@@ -9,7 +13,7 @@ test.describe('Case list', () => {
   });
 
   test('Shows page heading with case count', async ({ page }) => {
-    await expect(page.getByText(/Mine saker hos Klageinstans \(\d+\)/)).toBeVisible();
+    await expect(page.getByText(CASE_COUNT_REGEX)).toBeVisible();
   });
 
   test('Shows disclaimer info box', async ({ page }) => {
@@ -25,7 +29,7 @@ test.describe('Case list', () => {
   });
 
   test('Navigate to a case detail page', async ({ page }) => {
-    const caseHeading = page.getByText(/som gjelder «.+»/).first();
+    const caseHeading = page.getByText(CASE_HEADING_REGEX).first();
     const caseHeadingText = await caseHeading.innerText();
 
     await caseHeading.click();
@@ -40,15 +44,12 @@ test.describe('Case detail', () => {
     await page.goto(UI_DOMAIN);
     await page.getByText('Her ser du dine saker som er hos Klageinstans.').waitFor();
 
-    await page
-      .getByText(/som gjelder «.+»/)
-      .first()
-      .click();
+    await page.getByText(CASE_HEADING_REGEX).first().click();
     await page.getByText('Hendelser', { exact: true }).waitFor();
   });
 
   test('Shows case heading and case number', async ({ page }) => {
-    await expect(page.getByText(/som gjelder «.+»/).first()).toBeVisible();
+    await expect(page.getByText(CASE_HEADING_REGEX).first()).toBeVisible();
     await expect(page.getByText('Saksnummer')).toBeVisible();
   });
 
@@ -61,7 +62,7 @@ test.describe('Case detail', () => {
   });
 
   test('Can expand older events', async ({ page }) => {
-    const expandButton = page.getByRole('button', { name: /Vis eldre hendelser/ });
+    const expandButton = page.getByRole('button', { name: EXPAND_EVENTS_REGEX });
 
     if (await expandButton.isVisible()) {
       await expandButton.click();

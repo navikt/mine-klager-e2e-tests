@@ -19,5 +19,5 @@ export const logIn = async (page: Page, id: string) => {
 };
 
 export const verifyLogin = async (page: Page) => {
-  expect(page.getByText(`Mine saker hos Klageinstans`)).toBeDefined();
+  expect(page.getByText('Mine saker hos Klageinstans')).toBeDefined();
 };

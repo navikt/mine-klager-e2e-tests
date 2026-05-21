@@ -10,6 +10,8 @@ export const dismissConsentBanner = async (page: Page, context: BrowserContext) 
     try {
       await refuseButton.waitFor({ timeout: 1000 });
       await refuseButton.click();
-    } catch {}
+    } catch {
+      // Consent banner may not be present
+    }
   }
 };
