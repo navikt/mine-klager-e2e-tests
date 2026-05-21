@@ -32,9 +32,10 @@ runs:
   using: "composite"
   steps:
     - name: Checkout E2E
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
       with:
         repository: navikt/mine-klager-e2e-tests
+        ref: ${{ inputs.e2e_tag }}
 
     - name: Get image registry
       id: image-registry
@@ -73,10 +74,9 @@ runs:
       uses: nais/deploy/actions/deploy@v2
       env:
         CLUSTER: dev-gcp
-        VAR: jobid=${{ steps.uuid.outputs.uuid }},image=${{ steps.image.outputs.image }}
+        VAR: jobid=${{ steps.uuid.outputs.uuid }},image=${{ steps.image.outputs.image }},version=${{ steps.image-tag.outputs.tag }},github_actor=${{ github.actor }},github_repository=${{ github.repository }}
         TEAM: klage
         RESOURCE: nais/e2e-job.yaml
-        IMAGE: ${{ steps.image.outputs.image }}
 
     - name: Check E2E job status
       id: status
