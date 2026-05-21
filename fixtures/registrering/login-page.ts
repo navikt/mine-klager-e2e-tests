@@ -1,6 +1,6 @@
-import { UI_DOMAIN } from '@app/config/env';
-import { testUser } from '@app/testdata/user';
 import { expect, type Page } from '@playwright/test';
+import { UI_DOMAIN } from '@/config/env';
+import { testUser } from '@/testdata/user';
 
 export class LoginPage {
   constructor(public readonly page: Page) {}

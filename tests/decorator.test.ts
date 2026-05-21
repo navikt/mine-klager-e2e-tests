@@ -1,7 +1,7 @@
-import { UI_DOMAIN } from '@app/config/env';
-import { test } from '@app/fixtures/registrering/fixture';
-import { testUser } from '@app/testdata/user';
 import { expect } from '@playwright/test';
+import { UI_DOMAIN } from '@/config/env';
+import { test } from '@/fixtures/registrering/fixture';
+import { testUser } from '@/testdata/user';
 
 test.describe('Decorator header', () => {
   test.beforeEach(async ({ page }) => {
