@@ -46,7 +46,7 @@ jobs:
         with:
           bun-version: latest
           registries: |
-            @navikt:https://npm.pkg.github.com/|${{ env.BUN_AUTH_TOKEN }}
+            @navikt:https://npm.pkg.github.com/|$BUN_AUTH_TOKEN
 
       - name: Rename bunfig to global config name
         run: mv bunfig.toml .bunfig.toml
@@ -77,8 +77,8 @@ jobs:
         uses: nais/docker-build-push@v0
         id: docker-build-push
         with:
-          team: klage # required
-          tag: ${{ steps.image-tag.outputs.tag }} # optional
+          team: klage
+          tag: ${{ steps.image-tag.outputs.tag }}
           build_args: |
             CI=true
 
