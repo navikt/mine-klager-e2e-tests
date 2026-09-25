@@ -12,7 +12,7 @@ test.describe('Mine klager', () => {
     expect((await axeBuilder.analyze()).violations).toEqual([]);
 
     await page.getByText('Trykk her for å se listen').click();
-    await page.getByText('Dagpenger').waitFor();
+    await page.getByText('Lønnsgaranti').waitFor();
     expect((await axeBuilder.analyze()).violations).toEqual([]);
 
     await page.getByText('Klage som gjelder «Gjenlevendepensjon»').click();
