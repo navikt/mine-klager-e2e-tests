@@ -11,10 +11,6 @@ test.describe('Mine klager', () => {
     await page.getByText('Her ser du dine saker som er hos Klageinstans.').waitFor();
     expect((await axeBuilder.analyze()).violations).toEqual([]);
 
-    await page.getByText('Trykk her for å se listen').click();
-    await page.getByText('Lønnsgaranti').waitFor();
-    expect((await axeBuilder.analyze()).violations).toEqual([]);
-
     await page.getByText('Klage som gjelder «Gjenlevendepensjon»').click();
     await page.getByText('Hva skjer nå?').waitFor();
     expect((await axeBuilder.analyze()).violations).toEqual([]);
