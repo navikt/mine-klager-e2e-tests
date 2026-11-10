@@ -30,7 +30,13 @@ test.describe('Case list', () => {
 
   test('Navigate to a case detail page', async ({ page }) => {
     const caseHeading = page.getByText(CASE_HEADING_REGEX).first();
-    const caseHeadingText = await caseHeading.innerText();
+    const caseHeadingText = await caseHeading.textContent();
+
+    expect(caseHeadingText).not.toBeNull();
+
+    if (caseHeadingText === null) {
+      throw new Error('Case heading text is null');
+    }
 
     await caseHeading.click();
 
